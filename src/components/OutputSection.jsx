@@ -16,6 +16,9 @@ export default function OutputSection({
 }) {
     
     const handleDownload = async () => {
+      if (!outputText) {
+        return;
+      }
         try {
           const audioBlob = await generateMorseAudioBlob();
           const url = URL.createObjectURL(audioBlob);
