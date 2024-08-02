@@ -212,7 +212,7 @@ export default function App() {
     if (morseCodeRef.current === '') {
       return;
     }
-    navigator.clipboard.writeText(isEnglishToMorse ? outputText : inputText);
+    navigator.clipboard.writeText(outputText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
