@@ -1,5 +1,5 @@
 import React from 'react';
-import PNG from './assets/morse-code.png';
+import PNG from '../assets/morse-code.png';
 
 export default function Header() {
   return (
