@@ -31,14 +31,12 @@ export default function OutputSection({
         }
       };
       
-      
-
   return (
     <section className="bg-white shadow-lg rounded-lg p-6 flex-1">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">
         {isEnglishToMorse ? "Morse Code" : "English"}
       </h2>
-      <div className="bg-gray-100 p-4 rounded-md relative min-h-[10rem]">
+      <div className="bg-gray-100 p-4 rounded-md relative min-h-[10rem] max-h-[10rem] overflow-auto">
         <p className="break-words text-gray-700 font-mono text-lg">{outputText}</p>
       </div>
       <div className="relative flex space-x-2 mt-4">
@@ -77,7 +75,6 @@ export default function OutputSection({
         >
           <RefreshCw size={20} />
         </button>
-
       </div>
     </section>
   );

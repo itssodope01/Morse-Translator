@@ -15,7 +15,7 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
-  const [charCount, setCharCount] = useState(200);
+  const [charCount, setCharCount] = useState(500);
 
   const audioContextRef = useRef(null);
   const oscillatorRef = useRef(null);
@@ -49,6 +49,10 @@ export default function App() {
     if (!inputText) {
       return;
     }
+    if (inputText.length > 500) {
+      alert("Input exceeds the 500 character limit.");
+      return;
+    }
     if (isEnglishToMorse) {
       setOutputText(translateToMorse(inputText));
     } else {
@@ -60,7 +64,7 @@ export default function App() {
     setIsEnglishToMorse(prevState => !prevState);
     setInputText('');
     setOutputText('');
-    setCharCount(200);
+    setCharCount(500);
     morseCodeRef.current = '';
   };
 
@@ -218,9 +222,18 @@ export default function App() {
   };
 
   const handleInputChange = (e) => {
-    setInputText(e.target.value);
-    setCharCount(200 - e.target.value.length);
+    const newValue = e.target.value;
+    if (newValue.length > 500) {
+      const lastSpaceIndex = newValue.lastIndexOf(' ', 500);
+      const truncatedValue = lastSpaceIndex === -1 ? newValue.slice(0, 500) : newValue.slice(0, lastSpaceIndex);
+      setInputText(truncatedValue);
+      setCharCount(500 - truncatedValue.length);
+    } else {
+      setInputText(newValue);
+      setCharCount(500 - newValue.length);
+    }
   };
+  
 
   const generateMorseAudioBlob = () => {
     return new Promise((resolve) => {
@@ -316,9 +329,6 @@ export default function App() {
   
     return new Blob([e], { type: 'audio/wav' });
   }
-  
-  
-  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
