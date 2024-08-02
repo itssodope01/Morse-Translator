@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Header from './Header';
-import InputSection from './InputSection';
-import OutputSection from './OutputSection';
-import VisualFeedback from './VisualFeedback';
-import Footer from './Footer';
-import { translateToMorse, translateFromMorse, isValidMorseCode } from './morseCode';
+import Header from './components/Header';
+import InputSection from './components/InputSection';
+import OutputSection from './components/OutputSection';
+import VisualFeedback from './components/VisualFeedback';
+import Footer from './components/Footer';
+import { translateToMorse, translateFromMorse, isValidMorseCode } from './utils/morseCode';
 
 export default function App() {
   const [inputText, setInputText] = useState('');
